@@ -48,10 +48,10 @@ namespace FaceRecog
             this.bntHdCamera = new DevExpress.XtraEditors.SimpleButton();
             this.bntIpCamera = new DevExpress.XtraEditors.SimpleButton();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.bntLoadData = new DevExpress.XtraEditors.SimpleButton();
-            this.splashManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::FaceRecog.WaitForm1), true, true);
-            this.bntRegister = new DevExpress.XtraEditors.SimpleButton();
             this.bntClear = new DevExpress.XtraEditors.SimpleButton();
+            this.bntRegister = new DevExpress.XtraEditors.SimpleButton();
+            this.bntLoadData = new DevExpress.XtraEditors.SimpleButton();
+            this.splashManager = new DevExpress.XtraSplashScreen.SplashScreenManager();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processImg)).BeginInit();
@@ -77,9 +77,9 @@ namespace FaceRecog
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tslStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 1004);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 727);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1924, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1370, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -244,42 +244,11 @@ namespace FaceRecog
             this.panel3.Size = new System.Drawing.Size(348, 106);
             this.panel3.TabIndex = 27;
             // 
-            // bntLoadData
-            // 
-            this.bntLoadData.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.bntLoadData.Appearance.Options.UseFont = true;
-            this.bntLoadData.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.bntLoadData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image2")));
-            this.bntLoadData.Location = new System.Drawing.Point(1574, 416);
-            this.bntLoadData.Name = "bntLoadData";
-            this.bntLoadData.Size = new System.Drawing.Size(345, 49);
-            this.bntLoadData.TabIndex = 28;
-            this.bntLoadData.Text = "Load Data";
-            this.bntLoadData.Click += new System.EventHandler(this.bntLoadData_Click);
-            // 
-            // splashManager
-            // 
-            this.splashManager.ClosingDelay = 500;
-            // 
-            // bntRegister
-            // 
-            this.bntRegister.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.bntRegister.Appearance.Options.UseFont = true;
-            this.bntRegister.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.bntRegister.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image1")));
-            this.bntRegister.Location = new System.Drawing.Point(13, 4);
-            this.bntRegister.Name = "bntRegister";
-            this.bntRegister.Size = new System.Drawing.Size(326, 49);
-            this.bntRegister.TabIndex = 29;
-            this.bntRegister.Text = "Register Face";
-            this.bntRegister.Click += new System.EventHandler(this.bntRegister_Click);
-            // 
             // bntClear
             // 
             this.bntClear.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.bntClear.Appearance.Options.UseFont = true;
             this.bntClear.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.bntClear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
             this.bntClear.Location = new System.Drawing.Point(13, 55);
             this.bntClear.Name = "bntClear";
             this.bntClear.Size = new System.Drawing.Size(326, 49);
@@ -287,12 +256,36 @@ namespace FaceRecog
             this.bntClear.Text = "Clear Entries";
             this.bntClear.Click += new System.EventHandler(this.bntClear_Click);
             // 
+            // bntRegister
+            // 
+            this.bntRegister.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.bntRegister.Appearance.Options.UseFont = true;
+            this.bntRegister.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.bntRegister.Location = new System.Drawing.Point(13, 4);
+            this.bntRegister.Name = "bntRegister";
+            this.bntRegister.Size = new System.Drawing.Size(326, 49);
+            this.bntRegister.TabIndex = 29;
+            this.bntRegister.Text = "Register Face";
+            this.bntRegister.Click += new System.EventHandler(this.bntRegister_Click);
+            // 
+            // bntLoadData
+            // 
+            this.bntLoadData.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.bntLoadData.Appearance.Options.UseFont = true;
+            this.bntLoadData.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.bntLoadData.Location = new System.Drawing.Point(1574, 416);
+            this.bntLoadData.Name = "bntLoadData";
+            this.bntLoadData.Size = new System.Drawing.Size(345, 49);
+            this.bntLoadData.TabIndex = 28;
+            this.bntLoadData.Text = "Load Data";
+            this.bntLoadData.Click += new System.EventHandler(this.bntLoadData_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1924, 1026);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.bntLoadData);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);

@@ -38,9 +38,7 @@ namespace FaceRecog
         private List<Image<Gray, byte>> _imgsList;
         private Image<Bgr, byte> _inputEmGuImage;    //EmguCV type color image
         private int[] _arrayNumber;
-
         private Boolean trainedImage { get; set; } = false;
-
         public List<int> personIds { get; set; }
         public int processImageWidth { get; set; } = 100;
         public int processImageHeight { get; set; } = 100;
@@ -50,15 +48,9 @@ namespace FaceRecog
         public const string YlmPath = UtilConstant.haarAlgorithm;
         public Timer timer { get; set; }
         public bool facesSquares { get; set; } = false;
-
-
-
         private Boolean regUser { get; set; } = false;
-        
         private Image<Gray, byte> gray = null;
         private Image<Gray, byte> result, TrainedFace = null;
-
-
         int _facesCount = 0;
         int _facesPanelY = 0;
         int _facesPanelX = 0;
@@ -262,8 +254,6 @@ namespace FaceRecog
 
         }
 
-
-
         private void frmMain_Load(object sender, EventArgs e)
         {
            // InitCamera();
@@ -271,18 +261,6 @@ namespace FaceRecog
 
 
         }
-
-
-
-
-
-
-
-
-
-
-  
-
 
      /*   public void TestCudaFASTDetector()
         {
@@ -454,11 +432,6 @@ namespace FaceRecog
             }
         }
 
-      
-
-
-        
-
         private void startCam(IInputArray imageArray, string faceFileName, List<Rectangle> faces)
         {
            // Stopwatch watch;
@@ -484,7 +457,6 @@ namespace FaceRecog
            // detectionTime = watch.ElapsedMilliseconds;
         }
 
-
         private void ClearPanel()
         {
             panelControl.Controls.Clear();
@@ -492,10 +464,6 @@ namespace FaceRecog
             _facesPanelY = 0;
             _facesPanelX = 0;
         }
-
-       
-
-       
 
         private void AddFacesPanel(Image<Gray, byte> imFound, string namePerson, int matchValue)
         {
@@ -551,8 +519,6 @@ namespace FaceRecog
             ClearCamera();
             CaptureWebCamera();
         }
-
-       
 
         private void bntIpCamera_Click(object sender, EventArgs e)
         {
@@ -616,8 +582,6 @@ namespace FaceRecog
             processImg.Image = null;
             ClearPanel();
         }
-
-
 
         private void cmbDelete_SelectedIndexChanged(object sender, EventArgs e)
         {
