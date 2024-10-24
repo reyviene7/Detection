@@ -45,7 +45,7 @@
             // 
             this.txtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtID.Location = new System.Drawing.Point(1572, 12);
-            this.txtID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtID.Margin = new System.Windows.Forms.Padding(2);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(349, 26);
             this.txtID.TabIndex = 11;
@@ -56,7 +56,7 @@
             this.processImg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.processImg.Image = global::FaceRecog.Properties.Resources.who;
             this.processImg.Location = new System.Drawing.Point(1573, 97);
-            this.processImg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.processImg.Margin = new System.Windows.Forms.Padding(2);
             this.processImg.Name = "processImg";
             this.processImg.Size = new System.Drawing.Size(348, 406);
             this.processImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -67,7 +67,7 @@
             // 
             this.imgBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imgBox.Location = new System.Drawing.Point(11, 11);
-            this.imgBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.imgBox.Margin = new System.Windows.Forms.Padding(2);
             this.imgBox.Name = "imgBox";
             this.imgBox.Size = new System.Drawing.Size(1559, 932);
             this.imgBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -94,7 +94,6 @@
             this.bntWebCamera.Size = new System.Drawing.Size(349, 49);
             this.bntWebCamera.TabIndex = 20;
             this.bntWebCamera.Text = "WEB Camera";
-    
             // 
             // bntHdCamera
             // 
@@ -107,7 +106,6 @@
             this.bntHdCamera.Size = new System.Drawing.Size(349, 49);
             this.bntHdCamera.TabIndex = 19;
             this.bntHdCamera.Text = "HD Camera";
- 
             // 
             // bntIpCamera
             // 
@@ -120,7 +118,6 @@
             this.bntIpCamera.Size = new System.Drawing.Size(349, 49);
             this.bntIpCamera.TabIndex = 18;
             this.bntIpCamera.Text = "IP Camera";
-           
             // 
             // bntTrain
             // 
@@ -139,7 +136,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1932, 983);
+            this.ClientSize = new System.Drawing.Size(1928, 947);
             this.Controls.Add(this.bntTrain);
             this.Controls.Add(this.bntWebCamera);
             this.Controls.Add(this.bntHdCamera);
@@ -152,7 +149,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmTrain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-      
             this.Load += new System.EventHandler(this.frmTrain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.processImg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBox)).EndInit();

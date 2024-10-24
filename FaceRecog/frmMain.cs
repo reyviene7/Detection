@@ -56,7 +56,7 @@ namespace FaceRecog
         int _facesPanelX = 0;
 
         internal bool grabstart = false;
-        System.Threading.Thread tvthread;
+        Thread tvthread;
 
         public frmMain()
         {
@@ -221,15 +221,15 @@ namespace FaceRecog
 
         private void SetText(string text)
         {
-            if (this.txtID.InvokeRequired)
+            if (txtID.InvokeRequired)
             {
                 var d = new SetTextCallback(SetText);
-                this.Invoke(d, new object[] { text });
+                Invoke(d, new object[] { text });
             }
             else
             {
                 outputBox.Text = text;
-                this.txtID.Text = text;
+                txtID.Text = text;
             }
         }
 
@@ -256,10 +256,21 @@ namespace FaceRecog
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-           // InitCamera();
-           // TestCudaFASTDetector();
+            // InitCamera();
+            // TestCudaFASTDetector();
+            /*
+            int targetWidth = 1366;
+            int targetHeight = 768;
+            int originalWidth = 1960;
+            int originalHeight = 1078;
+            float scaleWidth = (float)targetWidth / originalWidth;
+            float scaleHeight = (float)targetHeight / originalHeight;
 
-
+            Scale(new SizeF(scaleWidth, scaleHeight));
+            Size = new Size(targetWidth, targetHeight);
+            Location = new Point((Screen.PrimaryScreen.Bounds.Width - targetWidth) / 2,
+                (Screen.PrimaryScreen.Bounds.Height - targetHeight) / 2);
+                */
         }
 
      /*   public void TestCudaFASTDetector()

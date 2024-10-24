@@ -50,6 +50,17 @@ namespace FaceRecog
 
         private void frmTrain_Load(object sender, EventArgs e)
         {
+            int targetWidth = 1366;
+            int targetHeight = 768;
+            int originalWidth = 1944;
+            int originalHeight = 986;
+            float scaleWidth = (float)targetWidth / originalWidth;
+            float scaleHeight = (float)targetHeight / originalHeight;
+
+            Scale(new SizeF(scaleWidth, scaleHeight));
+            Size = new Size(targetWidth, targetHeight);
+            Location = new Point((Screen.PrimaryScreen.Bounds.Width - targetWidth) / 2,
+                (Screen.PrimaryScreen.Bounds.Height - targetHeight) / 2);
         }
 
         private void InitializedCamera()
@@ -65,7 +76,7 @@ namespace FaceRecog
         private void ActivateCamera(object sender, EventArgs e)
         {
             _capture.Retrieve(_frameMat);
-            var currentFrame = _frameMat.ToImage<Bgr, byte>().Resize(1080, 720, Emgu.CV.CvEnum.Inter.Cubic);
+            var currentFrame = _frameMat.ToImage<Bgr, byte>().Resize(1080, 720, Inter.Cubic);
             var faceDetect = new CascadeClassifier(UtilConstant.haarFileFace);
             var facesDetected = faceDetect.DetectMultiScale(currentFrame, 1.2, 10, new Size(100, 100), Size.Empty);
 
