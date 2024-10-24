@@ -227,3 +227,6 @@ D:\Detection\FaceRecog\FaceRecog\bin\Debug\Emgu.CV.World.xml
 D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.csproj.CopyComplete
 D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.exe
 D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.pdb
+D:\Detection\FaceRecog\FaceRecog\bin\Debug\Dapper.Contrib.dll
+D:\Detection\FaceRecog\FaceRecog\bin\Debug\Dapper.dll
+D:\Detection\FaceRecog\FaceRecog\bin\Debug\Dapper.xml
