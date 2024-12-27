@@ -1,6 +1,6 @@
-# FaceReg (Face Detection & Recognition)
+# A Scalable Privacy-Centric Face Recognition Attendance System with Offline Functionality
 
-This project, originally named **Detection**, is a Windows Forms application that uses **EmguCV** (OpenCV wrapper for .NET) for face detection and recognition. It implements FisherFace recognition and uses a webcam, HD camera, or IP camera for real-time facial recognition.
+This project is a Windows Forms application that uses **EmguCV** (OpenCV wrapper for .NET) for face detection and recognition. It implements FisherFace recognition and uses a webcam, HD camera, or IP camera for real-time facial recognition.
 
 ## Features
 
@@ -16,7 +16,7 @@ This project, originally named **Detection**, is a Windows Forms application tha
 - **Emgu.CV** (for computer vision functionalities).
 - **Emgu.CV.UI** (for OpenCV user interface elements).
 - **.NET Framework** (Windows Forms support).
-  
+
 ### EmguCV Installation
 
 To use this project, you need to install EmguCV libraries. You can install them via **NuGet Package Manager** in Visual Studio.
@@ -31,7 +31,11 @@ To use this project, you need to install EmguCV libraries. You can install them 
 
 3. **Face Recognition**: Once faces are detected, the system attempts to recognize them using the FisherFaceRecognizer model. If recognized, it will display the person's ID and associated information on the interface.
 
-4. **Load & Train Data**: You can load a dataset of images to train the FisherFaceRecognizer model for face recognition. The dataset should be placed in the `trainingset/` folder and should contain images named in the format `PersonID_ImageNumber.bmp`. 
+4. **Load & Train Data**: You can load a dataset of images to train the FisherFaceRecognizer model for face recognition. The dataset should be placed in the following location:
+   ```plaintext
+   FaceRecog\FaceRecog\bin\Debug\trainingset
+   ```
+   Images in the dataset should be named in the format `PersonID_ImageNumber.bmp`.
 
 5. **Saving Trained Model**: After training, the system saves the trained model to the path specified by `YlmPath` (constant in the project). The model can be loaded for future use.
 
@@ -39,12 +43,12 @@ To use this project, you need to install EmguCV libraries. You can install them 
 
 - `frmMain.cs`: The main form handling the camera feed, face detection, and recognition.
 - `frmTrain.cs`: A form used to train new facial data.
-- `trainingset/`: Folder containing face images used to train the recognizer. Images should be in `.bmp` format.
+- `FaceRecog\FaceRecog\bin\Debug\trainingset`: Folder containing face images used to train the recognizer. Images should be in `.bmp` format.
 - `Utils/`: Utility classes and constants used throughout the project.
 
 ## Usage Example
 
-1. Launch the application by starting `FaceReg.sln` in Visual Studio.
+1. Launch the application by starting `FaceRecog.sln` in Visual Studio.
 2. Choose a camera by clicking the **Webcam**, **HD Camera**, or **IP Camera** button.
 3. Once a face is detected, it will display a red box around the face.
 4. If the face is recognized, the ID and relevant details will be displayed.
