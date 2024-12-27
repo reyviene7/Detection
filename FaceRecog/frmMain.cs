@@ -270,7 +270,7 @@ namespace FaceRecog
             Size = new Size(targetWidth, targetHeight);
             Location = new Point((Screen.PrimaryScreen.Bounds.Width - targetWidth) / 2,
                 (Screen.PrimaryScreen.Bounds.Height - targetHeight) / 2);
-                */
+            */
         }
 
      /*   public void TestCudaFASTDetector()
@@ -402,10 +402,92 @@ namespace FaceRecog
                 throw;
             }
         }
+        private void SplitDataset(List<Mat> mats, int[] ids, out List<Mat> trainMats, out List<int> trainIds, out List<Mat> valMats, out List<int> valIds)
+        {
+            trainMats = new List<Mat>();
+            trainIds = new List<int>();
+            valMats = new List<Mat>();
+            valIds = new List<int>();
+
+            // Perform 80-20 split
+            int splitIndex = (int)(mats.Count * 0.8);
+
+            trainMats = mats.Take(splitIndex).ToList();
+            trainIds = ids.Take(splitIndex).ToList();
+            valMats = mats.Skip(splitIndex).ToList();
+            valIds = ids.Skip(splitIndex).ToList();
+        }
+        private void EvaluateModel(List<Mat> valMats, List<int> valIds)
+        {
+            int total = valMats.Count;
+            int correct = 0;
+
+            Dictionary<int, int> truePositives = new Dictionary<int, int>();
+            Dictionary<int, int> falsePositives = new Dictionary<int, int>();
+            Dictionary<int, int> falseNegatives = new Dictionary<int, int>();
+
+            // Initialize metrics for each unique label
+            foreach (int label in valIds.Distinct())
+            {
+                truePositives[label] = 0;
+                falsePositives[label] = 0;
+                falseNegatives[label] = 0;
+            }
+
+            // Evaluate predictions
+            for (int i = 0; i < total; i++)
+            {
+                Mat img = valMats[i];
+                int trueLabel = valIds[i];
+                int predictedLabel = fisherFaceRecognizer.Predict(img).Label;
+
+                if (predictedLabel == trueLabel)
+                {
+                    correct++;
+                    truePositives[trueLabel]++;
+                }
+                else
+                {
+                    if (!falsePositives.ContainsKey(predictedLabel))
+                        falsePositives[predictedLabel] = 0;
+                    if (!falseNegatives.ContainsKey(trueLabel))
+                        falseNegatives[trueLabel] = 0;
+
+                    falsePositives[predictedLabel]++;
+                    falseNegatives[trueLabel]++;
+                }
+            }
+
+            // Calculate overall accuracy
+            double accuracy = (double)correct / total * 100;
+            string message = $"Validation Accuracy: {accuracy:F2}%\n\n";
+
+            // Calculate precision, recall, and F1 score for each label
+            foreach (int label in truePositives.Keys)
+            {
+                int tp = truePositives[label];
+                int fp = falsePositives.ContainsKey(label) ? falsePositives[label] : 0;
+                int fn = falseNegatives.ContainsKey(label) ? falseNegatives[label] : 0;
+
+                double precision = tp + fp > 0 ? (double)tp / (tp + fp) : 0;
+                double recall = tp + fn > 0 ? (double)tp / (tp + fn) : 0;
+                double f1Score = precision + recall > 0 ? 2 * (precision * recall) / (precision + recall) : 0;
+
+                message += $"Label: {label}\n";
+                message += $"  - Precision: {precision:P2}\n";
+                message += $"  - Recall: {recall:P2}\n";
+                message += $"  - F1 Score: {f1Score:P2}\n\n";
+            }
+
+            // Show results in a MessageBox
+            MessageBox.Show(message, "Model Evaluation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
 
         private async Task LoadData()
         {
             outputBox.Clear();
+
             var i = 0;
             var itemData = Directory.EnumerateFiles("trainingset/", "*.bmp");
             var enumerable = itemData as IList<string> ?? itemData.ToList();
@@ -430,11 +512,16 @@ namespace FaceRecog
                 if (total == i)
                 {
                     splashManager.ShowWaitForm();
+                    SplitDataset(listMat, _arrayNumber, out var trainMats, out var trainIds, out var valMats, out var valIds);
+
                     fisherFaceRecognizer.Train(listMat.ToArray(), _arrayNumber);
                     fisherFaceRecognizer.Write(YlmPath);
                    // FaceRecognition.Train(listMat.ToArray(), _arrayNumber);
                    // FaceRecognition.Write(YlmPath);
                     splashManager.CloseWaitForm();
+
+                    EvaluateModel(valMats, valIds);
+
                     MessageBox.Show(@"Total of " + _arrayNumber.Length + @" successfully loaded");
                     bntHdCamera.Enabled = true;
                     bntIpCamera.Enabled = true;

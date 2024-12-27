@@ -184,7 +184,6 @@ D:\dev\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.csprojResolveAssemblyRe
 D:\dev\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.frmTrain.resources
 D:\dev\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.WaitForm1.resources
 D:\dev\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.exe.licenses
-D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.csprojAssemblyReference.cache
 D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.frmMain.resources
 D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.frmTrain.resources
 D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.Properties.Resources.resources
@@ -224,9 +223,15 @@ D:\Detection\FaceRecog\FaceRecog\bin\Debug\Emgu.CV.UI.dll
 D:\Detection\FaceRecog\FaceRecog\bin\Debug\Emgu.CV.World.dll
 D:\Detection\FaceRecog\FaceRecog\bin\Debug\Emgu.CV.UI.xml
 D:\Detection\FaceRecog\FaceRecog\bin\Debug\Emgu.CV.World.xml
-D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.csproj.CopyComplete
 D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.exe
 D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.pdb
 D:\Detection\FaceRecog\FaceRecog\bin\Debug\Dapper.Contrib.dll
 D:\Detection\FaceRecog\FaceRecog\bin\Debug\Dapper.dll
 D:\Detection\FaceRecog\FaceRecog\bin\Debug\Dapper.xml
+D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.csproj.AssemblyReference.cache
+D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.csproj.CoreCompileInputs.cache
+D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.csproj.Up2Date
+D:\Detection\FaceRecog\FaceRecog\bin\Debug\FaceRecog.exe.manifest
+D:\Detection\FaceRecog\FaceRecog\bin\Debug\FaceRecog.application
+D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.exe.manifest
+D:\Detection\FaceRecog\FaceRecog\obj\Debug\FaceRecog.application
