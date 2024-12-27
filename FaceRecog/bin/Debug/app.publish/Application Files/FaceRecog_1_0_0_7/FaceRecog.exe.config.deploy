@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2"/>
+    </startup>
+  <connectionStrings>
+    <add name="ServeAll.Properties.Settings.GConString" connectionString="Server=127.0.0.1;Database=thewizards;User Id=root;Password=1234;Port=3306" providerName="MySql.Data.MySqlClient" />
+  </connectionStrings>
+</configuration>

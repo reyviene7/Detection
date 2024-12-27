@@ -29,6 +29,8 @@ namespace FaceRecog
         private MCvScalar color;
         private List<Mat> matList;
         private List<int> personIds;
+        private List<Mat> trainMats, valMats;
+        private List<int> trainIds, valIds;
         private int timerCounter = 0;
         private int timeLimit = 20;
         private int ScanCounter = 0;
@@ -142,11 +144,13 @@ namespace FaceRecog
             {
                 if (matList.Count > 0)
                 {
+                    SplitDataset();
                     // Train the recognizer with the collected faces and person IDs
-                    _faceRecognition.Train(matList.ToArray(), personIds.ToArray());
+                    _faceRecognition.Train(trainMats.ToArray(), trainIds.ToArray());
                     _faceRecognition.Write(UtilConstant.haarAlgorithm);  // Save the trained model
 
                     outputBox.AppendText($"Training completed! Number of training samples: {matList.Count}{Environment.NewLine}");
+                    EvaluateModel();
                     MessageBox.Show($"Training for ID {txtID.Text} successfully completed!");
 
                     ResetTraining();
@@ -158,6 +162,84 @@ namespace FaceRecog
                 }
             }
         }
+
+        private void SplitDataset()
+        {
+            // Ensure lists are initialized
+            trainMats = new List<Mat>();
+            trainIds = new List<int>();
+            valMats = new List<Mat>();
+            valIds = new List<int>();
+
+            // Calculate 80-20 split
+            int splitIndex = (int)(matList.Count * 0.8);
+
+            // Populate training and validation sets
+            trainMats = matList.Take(splitIndex).ToList();
+            trainIds = personIds.Take(splitIndex).ToList();
+
+            valMats = matList.Skip(splitIndex).ToList();
+            valIds = personIds.Skip(splitIndex).ToList();
+        }
+
+
+        private void EvaluateModel()
+        {
+            int total = valMats.Count;
+            int correct = 0;
+            Dictionary<int, int> truePositives = new Dictionary<int, int>();
+            Dictionary<int, int> falsePositives = new Dictionary<int, int>();
+            Dictionary<int, int> falseNegatives = new Dictionary<int, int>();
+
+            // Initialize metrics for each unique label
+            foreach (int label in trainIds.Concat(valIds).Distinct())
+            {
+                truePositives[label] = 0;
+                falsePositives[label] = 0;
+                falseNegatives[label] = 0;
+            }
+
+            // Perform predictions and calculate metrics
+            for (int i = 0; i < total; i++)
+            {
+                Mat img = valMats[i];
+                int trueLabel = valIds[i];
+
+                // Predict the label
+                int predictedLabel = _faceRecognition.Predict(img).Label;
+
+                if (predictedLabel == trueLabel)
+                {
+                    correct++;
+                    truePositives[trueLabel]++;
+                }
+                else
+                {
+                    falsePositives[predictedLabel]++;
+                    falseNegatives[trueLabel]++;
+                }
+            }
+
+            // Calculate overall accuracy
+            double accuracy = (double)correct / total * 100;
+            outputBox.AppendText($"Validation Accuracy: {accuracy:F2}%{Environment.NewLine}");
+
+            // Calculate precision, recall, and F1 score for each label
+            foreach (int label in truePositives.Keys)
+            {
+                int tp = truePositives[label];
+                int fp = falsePositives[label];
+                int fn = falseNegatives[label];
+
+                double precision = tp + fp > 0 ? (double)tp / (tp + fp) : 0;
+                double recall = tp + fn > 0 ? (double)tp / (tp + fn) : 0;
+                double f1Score = precision + recall > 0 ? 2 * (precision * recall) / (precision + recall) : 0;
+
+                outputBox.AppendText($"Label: {label} - Precision: {precision:P2}, Recall: {recall:P2}, F1 Score: {f1Score:P2}{Environment.NewLine}");
+            }
+        }
+
+
 
         private void ResetTraining()
         {
