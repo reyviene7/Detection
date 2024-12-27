@@ -1,4 +1,4 @@
-# A Scalable Multi-Device Face Recognition Attendance System with Offline Functionality
+# A Scalable Privacy-Centric Face Recognition Attendance System with Offline Functionality
 
 This project is a Windows Forms application that uses **EmguCV** (OpenCV wrapper for .NET) for face detection and recognition. It implements FisherFace recognition and uses a webcam, HD camera, or IP camera for real-time facial recognition.
 
